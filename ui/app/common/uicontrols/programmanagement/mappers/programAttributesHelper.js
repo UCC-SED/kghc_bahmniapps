@@ -22,9 +22,14 @@ angular.module('bahmni.common.uicontrols.programmanagment')
                 if (programAttribute.answers.length === 0) {
                     return patientProgramAttributeValue;
                 }
+                
                 var answer = _.find(programAttribute.answers, function (answer) {
                     return answer.conceptId === patientProgramAttributeValue;
                 });
+
+                if (!answer) {
+                    return patientProgramAttributeValue;
+                }
                 return answer.description;
             };
 
@@ -45,7 +50,6 @@ angular.module('bahmni.common.uicontrols.programmanagment')
                     return attributeType.name === programAttributeType;
                 });
             };
-
             var programConfig = this.getAttributeTypesConfigurationForProgram(programName);
             if (programConfig.attributeTypes.length === 0) {
                 return programAttributeTypes;
@@ -74,7 +78,6 @@ angular.module('bahmni.common.uicontrols.programmanagment')
 
         this.filterOnHide = function (attributeList, attributeTypes) {
             var fetchOnlyShow = function (attributeType) {
-         //   console.log(attributeType);
                 if (attributeList.indexOf(attributeType.name) >= 0) {
                     return false;
                 } else {
@@ -84,6 +87,7 @@ angular.module('bahmni.common.uicontrols.programmanagment')
             if (!attributeList) {
                 return attributeTypes;
             }
+
             return _.filter(attributeTypes, fetchOnlyShow);
         };
 

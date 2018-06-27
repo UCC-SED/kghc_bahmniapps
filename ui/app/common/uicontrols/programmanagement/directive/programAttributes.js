@@ -22,7 +22,6 @@ angular.module('bahmni.common.uicontrols.programmanagment')
 
         $scope.getValueForAttributeType = function (attributeType) {
             var programAttributesMap = $scope.patientProgram.patientProgramAttributes;
-
             if (isDateFormat(attributeType.format)) {
                 return programAttributesMap[attributeType.name] ? Bahmni.Common.Util.DateUtil.formatDateWithoutTime(programAttributesMap[attributeType.name]) : "";
             } else if (isCodedConceptFormat(attributeType.format)) {
