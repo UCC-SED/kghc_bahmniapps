@@ -341,7 +341,7 @@ angular.module('bahmni.clinical')
 
                     var drugStatusResponse = response.data.stockStatus;
 
-                    if (drugStatusResponse) {
+                    if (!drugStatusResponse) {
                         $scope.stockAvaibilityStatus = !drugStatusResponse;
                         $scope.stockAvaibilityDrugOrder = newDrugOrder;
                         ngDialog.open({

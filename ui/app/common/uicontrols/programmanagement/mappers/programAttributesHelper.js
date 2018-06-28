@@ -78,6 +78,10 @@ angular.module('bahmni.common.uicontrols.programmanagment')
 
         this.filterOnHide = function (attributeList, attributeTypes) {
             var fetchOnlyShow = function (attributeType) {
+
+             if (typeof attributeType === "undefined") {
+                return false;
+             }
                 if (attributeList.indexOf(attributeType.name) >= 0) {
                     return false;
                 } else {
