@@ -439,9 +439,9 @@ angular.module('bahmni.clinical').controller('ConsultationController', ['$scope'
             $scope.dashboardDirty = true;
         };
 
-        var submitLabOrderToGothomis = function (providerUuid, conceptUuid, patientUuid, locationUuid) {
+        var submitLabOrderToGothomis = function (providerUuid, labOrder, patientUuid, locationUuid) {
             spinner.forPromise(integrationService.submitLabOrder(
-                providerUuid, conceptUuid, patientUuid, locationUuid
+                providerUuid, labOrder, patientUuid, locationUuid
             ).then(function (response) {
             }));
         };
@@ -490,7 +490,7 @@ angular.module('bahmni.clinical').controller('ConsultationController', ['$scope'
                                 return saveConditions().then(function (savedConditions) {
                                     if ($scope.gothomisIntegrationStatus) {
                                         if (encounterData.orders.length > 0) {
-                                            submitLabOrderToGothomis(currentProviderUuid, encounterData.orders[0].concept.uuid, encounterData.patientUuid, encounterData.locationUuid);
+                                            submitLabOrderToGothomis(currentProviderUuid, encounterData.orders, encounterData.patientUuid, encounterData.locationUuid);
                                         }
                                         if (encounterData.drugOrders.length > 0) {
                                             submitTreatmentOrderToGothomis(currentProviderUuid, encounterData.drugOrders, encounterData.patientUuid, encounterData.locationUuid);

@@ -12,7 +12,8 @@ angular.module('bahmni.common.attributeTypes', []).directive('attributeTypes', [
             handleUpdate: '&',
             handleChange: '&',
             isReadOnly: '&',
-            isForm: '=?'
+            isForm: '=?',
+            errorMessage: '=?'
         },
         templateUrl: '../common/attributeTypes/views/attributeInformation.html',
         restrict: 'E',

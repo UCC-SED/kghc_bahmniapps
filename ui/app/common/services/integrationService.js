@@ -3,16 +3,20 @@ angular.module('bahmni.common.services')
     .factory('integrationService', ['$http', function ($http) {
         var v = 'custom:(uuid,strength,name,dosageForm,concept:(uuid,name,names:(name)))';
 
-        var submitLabOrder = function (providerUuid, conceptUuid, patientUuid, locationUuid) {
-            var url = Bahmni.Common.Constants.submitLabOrder;
-            return $http.get(url, {
-                params: {
-                    conceptUuid: conceptUuid,
-                    providerUuid: providerUuid,
-                    patientUuid: patientUuid,
-                    locationUuid: locationUuid
+        var submitLabOrder = function (providerUuid, labOrder, patientUuid, locationUuid) {
+            return $http({
+                    method: 'POST',
+                    url: Bahmni.Common.Constants.submitLabOrder, 
+                   data: {
+                    "labOrder": labOrder,
+                    "providerUuid": providerUuid,
+                    "patientUuid": patientUuid,
+                    "locationUuid": locationUuid
+                },
+                headers: {
+                    'Content-Type': 'application/json'
                 }
-            });
+           });
         };
 
         var submitDrugOrder = function (providerUuid, drugOrder, patientUuid, locationUuid) {
