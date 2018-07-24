@@ -12,8 +12,7 @@ angular.module('bahmni.common.attributeTypes', []).directive('attributeTypes', [
             handleUpdate: '&',
             handleChange: '&',
             isReadOnly: '&',
-            isForm: '=?',
-            errorMessage: '=?'
+            isForm: '=?'
         },
         templateUrl: '../common/attributeTypes/views/attributeInformation.html',
         restrict: 'E',
@@ -21,11 +20,12 @@ angular.module('bahmni.common.attributeTypes', []).directive('attributeTypes', [
             $scope.getAutoCompleteList = $scope.getAutoCompleteList();
             $scope.getDataResults = $scope.getDataResults();
             // to avoid watchers in one way binding
+
+
             $scope.isAutoComplete = $scope.isAutoComplete() || function () { return false; };
             $scope.isReadOnly = $scope.isReadOnly() || function () { return false; };
             $scope.handleUpdate = $scope.handleUpdate() || function () { return false; };
             $scope.handleChange = $scope.handleChange() || function () { return false; };
-
             $scope.appendConceptNameToModel = function (attribute) {
                 var attributeValueConceptType = $scope.targetModel[attribute.name];
                 var concept = _.find(attribute.answers, function (answer) {

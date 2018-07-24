@@ -38,7 +38,7 @@
                     type="text" pattern-validate id="{{::attribute.name}}"
                     ng-model="targetModel[attribute.name]" data-item-type="personAttribute"  pattern="^\S.*$"
                     ng-disabled="::isReadOnly(attribute.name)" ng-required="{{::attribute.required}}" ng-blur="::handleUpdate(attribute.name)" ng-change="::handleChange(attribute.name)"/>
-            <label class="left" ng-if="false">"{{::attribute.name}}"</label>
+            <label class="left" ng-if="true"></label>
         </div>
         <div class="left" data-ng-switch-when="java.lang.Integer">
             <input id="{{::attribute.name}}" type="number" pattern-validate
