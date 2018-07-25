@@ -75,7 +75,6 @@ angular.module('bahmni.common.uicontrols.programmanagment')
             var init = function () {
                 spinner.forPromise(programService.getAllPrograms().then(function (programs) {
                     $scope.allPrograms = programs;
-                     console.log($scope.allPrograms);
                     $scope.allPrograms.showProgramSection = true;
                     filterPrograms(clinicProgramsMapping);
                 }), id);
@@ -235,7 +234,7 @@ angular.module('bahmni.common.uicontrols.programmanagment')
             $scope.confirmDeletion = function (patientProgram) {
                 var scope = {};
                 scope.message = 'Are you sure, you want to delete ' + patientProgram.display + '?';
-                scope.cancel = _.partial(unVoidPatientProgram, patientProgram, _);
+                scope.cancel = '_.partial(unVoidPatientProgram, patientProgram, _)';
                 scope.delete = _.partial(voidPatientProgram, patientProgram, _);
                 confirmBox({
                     scope: scope,
@@ -304,7 +303,6 @@ angular.module('bahmni.common.uicontrols.programmanagment')
                 return patientProgramAttributes;
             };
             $scope.handleProgramAttributeUpdate = function (attributeName) {
-                console.log(attributeName);
                 var formConditions = Bahmni.Clinical.Program.FormConditions;
                 if (formConditions && formConditions.rules) {
                     var conditionFn = formConditions.rules[attributeName];
@@ -323,7 +321,6 @@ angular.module('bahmni.common.uicontrols.programmanagment')
                  }
                 $scope.programWorkflowStates = $scope.getStates(program);
                 $scope.programAttributeTypes = getProgramAttributesForCurrentProgram(program);
-                console.log($scope.programAttributeTypes);
                  angular.forEach($scope.programAttributeTypes,function(value,key){
                    $scope.handleProgramAttributeUpdate(value.name); 
                  });
@@ -378,7 +375,6 @@ angular.module('bahmni.common.uicontrols.programmanagment')
             {
                  angular.forEach(clinicProgramsMapping.programs, function(value, key) {
                  if (value.clinic == getCurrentLocation().name) {
-                  console.log("Program " + value.program);
                   for (var i=0; i<$scope.allPrograms.length;i++) {
                     if ($scope.allPrograms[i].name == value.program) {
                              $scope.allFilteredPrograms.push($scope.allPrograms[i]); 
@@ -398,7 +394,6 @@ angular.module('bahmni.common.uicontrols.programmanagment')
                            });
                    }             
                 });
-               console.log("Found " + $scope.allFilteredPrograms);
               };
 
             $scope.getMaxAllowedDate = function (states) {
