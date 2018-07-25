@@ -21,7 +21,6 @@ angular.module('bahmni.common.uicontrols.programmanagment')
             var programSpecificAttributeTypesDefinition = appService.getAppDescriptor().getConfigValue("program").programSpecificAttributeTypesDefinition;
             var locationClinicMapping = appService.getAppDescriptor().getConfigValue("program").locationClinicMapping;
             var clinicProgramsMapping = appService.getAppDescriptor().getConfigValue("program").clinicProgramsMapping;
-           console.log(clinicProgramsMapping);
             var id = "#programEnrollmentContainer";
             $scope.showAttribute = false;
 
@@ -76,6 +75,7 @@ angular.module('bahmni.common.uicontrols.programmanagment')
             var init = function () {
                 spinner.forPromise(programService.getAllPrograms().then(function (programs) {
                     $scope.allPrograms = programs;
+                     console.log($scope.allPrograms);
                     $scope.allPrograms.showProgramSection = true;
                     filterPrograms(clinicProgramsMapping);
                 }), id);
@@ -86,6 +86,8 @@ angular.module('bahmni.common.uicontrols.programmanagment')
                 $scope.programSelected = null;
                 $scope.patientProgramAttributes = {};
                 $scope.programEnrollmentDate = null;
+
+
 
                 updateActiveProgramsList();
             };
@@ -375,16 +377,14 @@ angular.module('bahmni.common.uicontrols.programmanagment')
              var filterPrograms= function (clinicProgramsMapping) {
                   angular.forEach(clinicProgramsMapping.programs, function(value, key) {
                     if (value.clinic == getCurrentLocation().name) {
-                       var programItem = $scope.allPrograms.filter(function(item) {
+                        $scope.allFilteredPrograms = $scope.allPrograms.filter(function(item) {
+                           return item.name == value.program;
 
-                             return item.name == value.program;
                            });
-                       $scope.allFilteredPrograms.push(value.program);
-                      // console.log("Found " + $scope.allPrograms);
                    }             
                 });
-                console.log("Found " + $scope.allFilteredPrograms);
-              }
+               console.log("Found " + $scope.allFilteredPrograms);
+              };
 
             $scope.getMaxAllowedDate = function (states) {
                 var minStartDate = DateUtil.getDateWithoutTime(new Date());
