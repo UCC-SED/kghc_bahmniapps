@@ -10,6 +10,7 @@ angular.module('bahmni.common.uicontrols.programmanagment')
             $scope.programSelected = {};
             $scope.workflowStateSelected = {};
             $scope.allPrograms = [];
+            $scope.allFilteredPrograms = [];
             $scope.programWorkflowStates = [];
             $scope.workflowStatesWithoutCurrentState = [];
             $scope.outComesForProgram = [];
@@ -20,6 +21,7 @@ angular.module('bahmni.common.uicontrols.programmanagment')
             var programSpecificAttributeTypesDefinition = appService.getAppDescriptor().getConfigValue("program").programSpecificAttributeTypesDefinition;
             var locationClinicMapping = appService.getAppDescriptor().getConfigValue("program").locationClinicMapping;
             var clinicProgramsMapping = appService.getAppDescriptor().getConfigValue("program").clinicProgramsMapping;
+           console.log(clinicProgramsMapping);
             var id = "#programEnrollmentContainer";
             $scope.showAttribute = false;
 
@@ -373,11 +375,15 @@ angular.module('bahmni.common.uicontrols.programmanagment')
              var filterPrograms= function (clinicProgramsMapping) {
                   angular.forEach(clinicProgramsMapping.programs, function(value, key) {
                     if (value.clinic == getCurrentLocation().name) {
-                       $scope.allPrograms = $scope.allPrograms.filter(function(item) {
+                       var programItem = $scope.allPrograms.filter(function(item) {
+
                              return item.name == value.program;
                            });
+                       $scope.allFilteredPrograms.push(value.program);
+                      // console.log("Found " + $scope.allPrograms);
                    }             
                 });
+                console.log("Found " + $scope.allFilteredPrograms);
               }
 
             $scope.getMaxAllowedDate = function (states) {

@@ -16,7 +16,7 @@
                             <label>{{'PROGRAM_MANAGEMENT_LABEL_PROGRAM' | translate}} : </label>
                         </div>
                         <div class="cell-value">
-                            <select ng-model="programSelected" ng-options="program.name for program in allPrograms"
+                            <select ng-model="programSelected" ng-options="program for program in allFilteredPrograms"
                                     data-ng-change="setWorkflowStates(programSelected)">
                                 <option value="">{{'PROGRAM_MANAGEMENT_CHOOSE_PROGRAM_KEY' | translate}}</option>
                             </select>
