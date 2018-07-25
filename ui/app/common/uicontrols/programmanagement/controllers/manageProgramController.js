@@ -374,7 +374,22 @@ angular.module('bahmni.common.uicontrols.programmanagment')
                 return _.get(currentState, 'state.concept.display');
             };
 
-             var filterPrograms= function (clinicProgramsMapping) {
+            var filterPrograms = function (clinicProgramsMapping)
+            {
+                 angular.forEach(clinicProgramsMapping.programs, function(value, key) {
+                 if (value.clinic == getCurrentLocation().name) {
+                  console.log("Program " + value.program);
+                  for (var i=0; i<$scope.allPrograms.length;i++) {
+                    if ($scope.allPrograms[i].name == value.program) {
+                             $scope.allFilteredPrograms.push($scope.allPrograms[i]); 
+                             i = $scope.allPrograms.length;  
+                              }
+                     }
+                   }
+                 });
+            }
+
+             var filterProgramsOld= function (clinicProgramsMapping) {
                   angular.forEach(clinicProgramsMapping.programs, function(value, key) {
                     if (value.clinic == getCurrentLocation().name) {
                         $scope.allFilteredPrograms = $scope.allPrograms.filter(function(item) {
