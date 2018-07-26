@@ -287,7 +287,7 @@ Bahmni.Common = Bahmni.Common || {};
         bahmniConnectMetaDataDb: "metaData",
         serverDateTimeUrl: "/cgi-bin/systemdate",
         loginText: "/bahmni_config/openmrs/apps/home/whiteLabel.json",
-        auditLogUrl: RESTWS_V1 + "/auditlog",
+        auditLogUrl: BAHMNI_CORE  + "/auditlog",
         conditionUrl: EMRAPI + '/condition',
         conditionHistoryUrl: EMRAPI + '/conditionhistory',
         followUpConditionConcept: 'Follow-up Condition',

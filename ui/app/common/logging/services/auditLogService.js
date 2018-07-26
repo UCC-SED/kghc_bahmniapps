@@ -20,10 +20,12 @@ angular.module('bahmni.common.logging')
         };
 
         this.auditLog = function (params) {
-            return $http.post(Bahmni.Common.Constants.auditLogUrl,
+            return true;
+        /*    return $http.post(Bahmni.Common.Constants.auditLogUrl,
                        params,
                        {withCredentials: true}
             );
+            */
         };
 
            this.log = function (patientUuid, eventType, messageParams, module) {
