@@ -28,15 +28,15 @@ angular.module('bahmni.common.logging')
 
            this.log = function (patientUuid, eventType, messageParams, module) {
                     return configurationService.getConfigurations(['enableAuditLog']).then(function (result) {
-                        if (result.enableAuditLog) {
+                        if (false) {
                             var params = {};
                             params.patientUuid = patientUuid;
                             params.eventType = Bahmni.Common.AuditLogEventDetails[eventType].eventType;
                             params.message = Bahmni.Common.AuditLogEventDetails[eventType].message;
                             params.message = messageParams ? params.message + '~' + JSON.stringify(messageParams) : params.message;
                             params.module = module;
-                         return;
-                         //   return $http.post(Bahmni.Common.Constants.auditLogUrl, params, {withCredentials: true});}
+                        // return null;
+                          return $http.post(Bahmni.Common.Constants.auditLogUrl, params, {withCredentials: true});}
                     });
                 };
     }]);
